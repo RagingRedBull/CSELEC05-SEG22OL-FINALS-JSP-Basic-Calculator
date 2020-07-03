@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page
+	language="java"
+	contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Magday's Calculator</title>
 </head>
 <!-- Bootstrap CSS -->
 <link
@@ -14,29 +16,62 @@
 	crossorigin="anonymous">
 <body>
 	<div class="container">
-		<form action="calculate" method="post">
+		<form
+			action="calculate"
+			method="post">
+			<h1 class="text-center">MAGDAY CALCULATOR</h1>
+			<%
+				if (request.getAttribute("errorMsg") != null) {
+			%>
+			<%@ include file="templates/error-msg.jsp"%>
+			<%
+				}
+			%>
 			<div class="form-group">
 				<label for="firstInput">Number 1: </label>
-				<input id="firstInput" name="firstInput" class="form-control w-25" type="number">
+				<input
+					id="firstInput"
+					name="firstInput"
+					class="form-control w-25"
+					type="number"
+					step="0.01"
+					required="required">
 			</div>
 			<div class="form-group">
 				<label for="secondInput">Number 2: </label>
-				<input id="secondInput" name="secondInput" class="form-control w-25" type="number">
+				<input
+					id="secondInput"
+					name="secondInput"
+					class="form-control w-25"
+					type="number"
+					step="0.01"
+					required="required">
 			</div>
 			<div class="form-group">
 				<label for="operatorSelector">Operation</label>
-				<select id="operatorSelector" class="form-control w-25">
+				<select
+					id="operatorSelector"
+					name="operatorSelector"
+					class="form-control w-25">
 					<option value="0">Addition</option>
 					<option value="1">Subtraction</option>
 					<option value="2">Multiplication</option>
-					<option value="4">Division</option>
+					<option value="3">Division</option>
 				</select>
 			</div>
 			<button class="btn btn-primary">Submit</button>
 		</form>
+		<%
+			if (request.getAttribute("answer") != null) {
+		%>
+		<%@include file="templates/answer.jsp"%>
+		<%
+			}
+		%>
 	</div>
 	<!-- JS, Popper.js, and jQuery -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	<script
+		src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>
 	<script
